@@ -142,4 +142,38 @@ describe('#estimateCurrentMileage', () => {
 
     expect(estimateCurrentMileage(vehicle)).toBe(30000)
   })
+
+  test('should estimate the current mileage when vehicle has no event with mileage', () => {
+    const changeOfVRMEvent = {
+      date: new Date('2020'),
+      from: 'IZVB51',
+      to: 'IZVB52'
+    } as ChangeOfVRMEventInterface
+
+    const vehicle: VehicleInterface = {
+      id: 'foobar',
+      VRM: 'IZVB52',
+      maker: 'Ford',
+      model: 'Fiesta',
+      registrationDate: new Date('2014'),
+      events: [
+        changeOfVRMEvent
+      ]
+    }
+
+    expect(estimateCurrentMileage(vehicle)).toBe(63200)
+  })
+
+  test('should estimate the current mileage when vehicle has no events', () => {
+    const vehicle: VehicleInterface = {
+      id: 'foobar',
+      VRM: 'IZVB52',
+      maker: 'Ford',
+      model: 'Fiesta',
+      registrationDate: new Date('2014'),
+      events: []
+    }
+
+    expect(estimateCurrentMileage(vehicle)).toBe(63200)
+  })
 })

@@ -53,8 +53,8 @@ export function estimateCurrentMileage (vehicle: VehicleInterface) {
   if (mostRecentEvent) {
     yearsToProject = currentYear - mostRecentEvent.date.getFullYear()
   } else {
-    yearsToProject = currentYear - vehicle.registrationDate.getFullYear()
+    yearsToProject = currentYear - vehicle.registrationDate.getFullYear() + 1
   }
 
-  return (averageMileage * yearsToProject) + mostRecentEvent.mileage
+  return (averageMileage * yearsToProject) + (mostRecentEvent?.mileage ?? 0)
 }
