@@ -1,4 +1,7 @@
-import { calculateAverageMileage } from '../src/vehicle.service'
+import {
+  calculateAverageMileage,
+  estimateCurrentMileage
+} from '../src/vehicle.service'
 import { VehicleInterface } from '../src/vehicle.interface'
 import {
   AdsForSaleEventInterface,
@@ -115,5 +118,28 @@ describe('#calculateAverageMileage', () => {
     const caculatedAverageMileage = calculateAverageMileage(vehicle)
 
     expect(Math.round(caculatedAverageMileage)).toBe(7900)
+  })
+})
+
+describe('#estimateCurrentMileage', () => {
+  test('should estimate the current mileage when vehicle has at least one event with mileage', () => {
+    const adsForSaleEvent = {
+      date: new Date('2017'),
+      price: 1000000,
+      mileage: 15000
+    } as AdsForSaleEventInterface
+
+    const vehicle: VehicleInterface = {
+      id: 'foobar',
+      VRM: 'IZVB52',
+      maker: 'Ford',
+      model: 'Fiesta',
+      registrationDate: new Date('2014'),
+      events: [
+        adsForSaleEvent
+      ]
+    }
+
+    expect(estimateCurrentMileage(vehicle)).toBe(30000)
   })
 })

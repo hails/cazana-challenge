@@ -5,6 +5,7 @@ import {
 } from './event.interface'
 
 export type PossibleEvents = AdsForSaleEventInterface | ChangeOfVRMEventInterface | MOTTestEventInterface
+export type PossibleEventsWithMileages = AdsForSaleEventInterface | MOTTestEventInterface
 
 export interface VehicleInterface {
   id: string
