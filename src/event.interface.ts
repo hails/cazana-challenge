@@ -7,6 +7,7 @@ export interface AdsForSaleEventInterface {
 export interface MOTTestEventInterface {
     date: Date
     mileage: number
+    result: 'pass' | 'fail'
 }
 
 export interface ChangeOfVRMEventInterface {
